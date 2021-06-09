@@ -1,6 +1,5 @@
-const { env } = process;
 const config = {
-  backend_endpoint: env.MOOOVIE_BACKEND || 'http://localhost:3030/' 
+  backend_endpoint: 'http://yooshinmoooviebackend-env.eba-aqyci45g.ap-southeast-2.elasticbeanstalk.com/'
 };
 
 export default config;
