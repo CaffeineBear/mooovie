@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getShowTimes } from '../../redux/showtimes';
 import { 
   withStyles, 
   Container,
@@ -10,16 +12,29 @@ import HomeHeader from './HomeHeader';
 import TabPanel from '../../components/TabPanel';
 import TheatreTabs from './TheatreTabs';
 import TheatreSelect from './TheatreSelect';
-import showTimeData from '../../mockedData/data/showtimes_combined_data.json';
+// import showTimeData from '../../mockedData/data/showtimes_combined_data.json';
 import ShowTimeCard from './ShowTimeCard';
+
 
 const Home = (props) => {
   const { classes } = props;
   const [ tabpanel, setTabpanel ] = useState('arclight');
+  const dispatch = useDispatch();
+  const showTimeData = useSelector( state => state.showtimes.schedules );
+  const [ searchQuery, setQuery ] = useState('');
+  
+  useEffect(() => {
+   dispatch(getShowTimes());
+  /* eslint-disable-next-line */
+  }, []);
+
+  useEffect(() => {
+    console.log(showTimeData);
+  }, [showTimeData]);
+
   const handleOnClick = (selectedPanel) => {
     setTabpanel(selectedPanel);
   };
-  const [ searchQuery, setQuery ] = useState('');
   const theatreValues = [
     {
       value: 'arclight',
