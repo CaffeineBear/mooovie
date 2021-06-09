@@ -28,10 +28,6 @@ const Home = (props) => {
   /* eslint-disable-next-line */
   }, []);
 
-  useEffect(() => {
-    console.log(showTimeData);
-  }, [showTimeData]);
-
   const handleOnClick = (selectedPanel) => {
     setTabpanel(selectedPanel);
   };
